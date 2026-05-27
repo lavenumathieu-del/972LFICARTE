@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Carte de mobilisation — Martinique</title>
+<title>Carte de l'abstention en Martinique</title>
 <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
 <style>
   * { box-sizing: border-box; }
@@ -308,11 +308,10 @@
       <div class="card">
         <h2>📋 Plan d'action militant</h2>
         <ul class="actions">
-          <li><span class="icon">1</span><div><strong>Porte-à-porte ciblé</strong> sur les bureaux à plus de 60 % d'abstention — la carte montre les secteurs précis bureau par bureau.</div></li>
-          <li><span class="icon">2</span><div><strong>Vérifier l'inscription</strong> de chaque sympathisant rencontré sur service-public.fr.</div></li>
-          <li><span class="icon">3</span><div><strong>Cibler en priorité les jeunes (18-30 ans) et les inactifs</strong> — les catégories où l'abstention est la plus forte.</div></li>
-          <li><span class="icon">4</span><div><strong>Accompagnement physique au bureau de vote</strong> les jours de scrutin : covoiturage, garde d'enfants, présence rassurante.</div></li>
-          <li><span class="icon">5</span><div><strong>Créer une tournée</strong> dans l'onglet "Tournées" pour coordonner les actions de terrain avec d'autres militants.</div></li>
+          <li><span class="icon">1</span><div><strong>Vérifier l'inscription</strong> de chaque sympathisant rencontré sur service-public.fr.</div></li>
+          <li><span class="icon">2</span><div><strong>Cibler en priorité les jeunes (18-30 ans) et les inactifs</strong> — les catégories où l'abstention est la plus forte.</div></li>
+          <li><span class="icon">3</span><div><strong>Accompagnement physique au bureau de vote</strong> les jours de scrutin : covoiturage, garde d'enfants, présence rassurante.</div></li>
+          <li><span class="icon">4</span><div><strong>Créer une tournée</strong> dans l'onglet "Tournées" pour coordonner les actions de terrain avec d'autres militants.</div></li>
         </ul>
       </div>
 
@@ -320,11 +319,6 @@
         <h2>🌴 Vue par arrondissement</h2>
         <div class="desc">L'abstention varie selon les zones. Nord-Atlantique et Sud rural votent moins.</div>
         <div class="data-table-wrap"><table class="data-table" id="arr-table"></table></div>
-      </div>
-
-      <div class="card">
-        <h2>📈 Le contre-exemple Schoelcher</h2>
-        <div class="desc">Schoelcher est la commune qui vote le plus (45,9 % d'abstention seulement). Profil jeune, qualifié, banlieue universitaire. <strong>La preuve qu'on peut faire bouger les choses.</strong></div>
       </div>
 
     </div>
@@ -1293,14 +1287,11 @@ function colorTxExpr() {
 function colorVolExpr() {
   return ['interpolate', ['linear'], volMatch,
     0, '#3F5C7A',
-    200, '#2E86AB',
-    400, '#52B788',
+    300, '#52B788',
     600, '#F1C40F',
-    800, '#F39C12',
-    1000, '#E67E22',
-    1200, '#C62828',
-    1500, '#7B1818',
-    2000, '#5B1366'
+    900, '#F39C12',
+    1300, '#C62828',
+    1800, '#5B1366'
   ];
 }
 function colorEcartExpr() {
@@ -1570,16 +1561,13 @@ function updateLegendContent() {
       <div class="legend-row"><div class="legend-color" style="background:#7ED957"></div>48 - 52 %</div>
       <div class="legend-row"><div class="legend-color" style="background:#27AE60"></div>moins de 48 %</div>`;
   } else if (colorMode === 'abst') {
-    div.innerHTML = `<strong>Volume d'abstentions</strong>
-      <div class="legend-row"><div class="legend-color" style="background:#5B1366"></div>très élevé</div>
-      <div class="legend-row"><div class="legend-color" style="background:#7B1818"></div>élevé</div>
-      <div class="legend-row"><div class="legend-color" style="background:#C62828"></div>moyen-haut</div>
-      <div class="legend-row"><div class="legend-color" style="background:#E67E22"></div>moyen</div>
-      <div class="legend-row"><div class="legend-color" style="background:#F39C12"></div>moyen-bas</div>
-      <div class="legend-row"><div class="legend-color" style="background:#F1C40F"></div>faible</div>
-      <div class="legend-row"><div class="legend-color" style="background:#52B788"></div>très faible</div>
-      <div class="legend-row"><div class="legend-color" style="background:#2E86AB"></div>minime</div>
-      <div class="legend-row"><div class="legend-color" style="background:#3F5C7A"></div>négligeable</div>`;
+  div.innerHTML = `<strong>Volume d'abstentions</strong>
+    <div class="legend-row"><div class="legend-color" style="background:#5B1366"></div>très élevé (1800+)</div>
+    <div class="legend-row"><div class="legend-color" style="background:#C62828"></div>élevé (1300+)</div>
+    <div class="legend-row"><div class="legend-color" style="background:#F39C12"></div>moyen (900+)</div>
+    <div class="legend-row"><div class="legend-color" style="background:#F1C40F"></div>modéré (600+)</div>
+    <div class="legend-row"><div class="legend-color" style="background:#52B788"></div>faible (300+)</div>
+    <div class="legend-row"><div class="legend-color" style="background:#3F5C7A"></div>très faible</div>`;
   } else {
     div.innerHTML = `<strong>Écart au modèle</strong>
       <div class="legend-row"><div class="legend-color" style="background:#5B1366"></div>+4 et + (réservoir fort)</div>
