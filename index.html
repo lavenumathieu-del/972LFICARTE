@@ -1337,7 +1337,7 @@ function zoomSmoothedValue(bureauMatch, communeMatch) {
 
 // Expressions de coloration : on interpole sur la valeur du match
 function colorTxExpr() {
-  return ['interpolate', ['linear'], zoomSmoothedValue(txMatch, commTxMatch),
+  return ['interpolate', ['linear'], txMatch,
     0, '#27AE60',
     48, '#7ED957',
     52, '#F1C40F',
@@ -1350,7 +1350,7 @@ function colorTxExpr() {
   ];
 }
 function colorVolExpr() {
-  return ['interpolate', ['linear'], zoomSmoothedValue(volMatch, commVolMatch),
+  return ['interpolate', ['linear'], volMatch,
     0, '#3F5C7A',
     300, '#52B788',
     600, '#F1C40F',
