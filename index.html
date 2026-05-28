@@ -1335,29 +1335,31 @@ function zoomSmoothedValue(bureauMatch, communeMatch) {
   ];
 }
 
-// Expressions de coloration : on interpole sur la valeur du match
-function colorTxExpr() {
-  return ['interpolate', ['linear'], txMatch,
-    0, '#27AE60',
-    48, '#7ED957',
-    52, '#F1C40F',
-    55, '#F39C12',
-    58, '#E74C3C',
-    61, '#C62828',
-    64, '#A52A2A',
-    67, '#7B1818',
-    70, '#5B1366'
+// Communes denses où le lissage au zoom est souhaité (codes sur 3 chiffres)
+const DENSE_COMMUNES = ['209', '229']; // Fort-de-France, Schoelcher
+
+// Au zoom faible : couleur de la commune SI commune dense, sinon couleur du bureau.
+// Au zoom fort (>=13) : toujours la couleur du bureau.
+function smoothedColor(rampBureau, rampCommune) {
+  const code = ['slice', ['get', 'codeCommune'], -3];
+  const lowZoom = ['match', code, DENSE_COMMUNES, rampCommune, rampBureau];
+  return ['interpolate', ['linear'], ['zoom'],
+    11, lowZoom,
+    13, rampBureau
   ];
 }
+
+function colorTxExpr() {
+  const ramp = (v) => ['interpolate', ['linear'], v,
+    0,'#27AE60', 48,'#7ED957', 52,'#F1C40F', 55,'#F39C12',
+    58,'#E74C3C', 61,'#C62828', 64,'#A52A2A', 67,'#7B1818', 70,'#5B1366'];
+  return smoothedColor(ramp(txMatch), ramp(commTxMatch));
+}
+
 function colorVolExpr() {
-  return ['interpolate', ['linear'], volMatch,
-    0, '#3F5C7A',
-    300, '#52B788',
-    600, '#F1C40F',
-    900, '#F39C12',
-    1300, '#C62828',
-    1800, '#5B1366'
-  ];
+  const ramp = (v) => ['interpolate', ['linear'], v,
+    0,'#3F5C7A', 300,'#52B788', 600,'#F1C40F', 900,'#F39C12', 1300,'#C62828', 1800,'#5B1366'];
+  return smoothedColor(ramp(volMatch), ramp(commVolMatch));
 }
 
 // Filtre : on cache les features hors filtre
