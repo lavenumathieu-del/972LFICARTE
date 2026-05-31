@@ -1245,7 +1245,7 @@ map = new maplibregl.Map({
     'line-color': '#1a1a1a',
     'line-width': ['interpolate', ['linear'], ['zoom'], 9, 0.2, 12, 0.5, 14, 0.9, 18, 1.6],
     'line-opacity': ['interpolate', ['linear'], ['zoom']],
-      11, ['match', ['slice', ['get', 'codeCommune'], -3], DENSE_COMMUNES, 0, 1],
+      11, ['match', ['slice', ['get', 'codeCommune'], -3], ['209','229'], 0, 1],
       13, 1
   }
 }
