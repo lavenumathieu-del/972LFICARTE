@@ -1239,6 +1239,10 @@ map = new maplibregl.Map({
       }
     },
     layers: [
+     // ... (le fond de carte raster, basemap, etc.)
+  { id: 'bv-fill', type: 'fill', source: 'bureaux', 'source-layer': 'bureaux',
+    paint: { 'fill-color': '#cccccc', 'fill-opacity': 0.8 }
+  },
       // Couche outline — adaptative au zoom
       { id: 'bv-line', type: 'line', source: 'bureaux', 'source-layer': 'bureaux',
   paint: {
@@ -1248,7 +1252,11 @@ map = new maplibregl.Map({
       11, ['match', ['slice', ['get', 'codeCommune'], -3], ['209','229'], 0, 1],
       13, 1 ]
   }
-}
+},
+     { id: 'bv-hover', type: 'line', source: 'bureaux', 'source-layer': 'bureaux',
+    paint: { 'line-color': '#FFD700', 'line-width': 3 },
+    filter: ['==', ['get', 'id_bv'], '__none__']
+  }
     ],
   center: [-61.02, 14.65],
   zoom: 10,
