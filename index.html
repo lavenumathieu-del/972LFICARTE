@@ -1239,14 +1239,6 @@ map = new maplibregl.Map({
       }
     },
     layers: [
-      { id: 'basemap', type: 'raster', source: 'basemap' },
-      // Couche fill — la couleur sera mise à jour dynamiquement
-      { id: 'bv-fill', type: 'fill', source: 'bureaux', 'source-layer': 'bureaux',
-        paint: {
-          'fill-color': '#E74C3C',
-          'fill-opacity': userOpacity
-        }
-      },
       // Couche outline — adaptative au zoom
       { id: 'bv-line', type: 'line', source: 'bureaux', 'source-layer': 'bureaux',
   paint: {
