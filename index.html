@@ -1238,8 +1238,7 @@ map = new maplibregl.Map({
         url: 'pmtiles://./martinique.pmtiles'
       }
     },
-    layers: [
-     // ... (le fond de carte raster, basemap, etc.)
+    layers: [{ id: 'basemap', type: 'raster', source: 'basemap' },
   { id: 'bv-fill', type: 'fill', source: 'bureaux', 'source-layer': 'bureaux',
     paint: { 'fill-color': '#cccccc', 'fill-opacity': 0.8 }
   },
